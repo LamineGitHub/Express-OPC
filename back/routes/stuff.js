@@ -6,13 +6,12 @@ import {
   getOneThing,
   updateThing,
 } from "../controllers/stuff.js"
-import auth from '../middleware/auth.js';
-
+import { auth, updateImage } from "../middleware/index.js"
 
 const router = Router()
 
 // create
-router.post("/", auth,  createThing)
+router.post("/", auth, updateImage, createThing)
 
 // read
 router.get("/", auth, getAllThings)
@@ -21,7 +20,7 @@ router.get("/", auth, getAllThings)
 router.get("/:id", auth, getOneThing)
 
 // update
-router.put("/:id", auth,  updateThing)
+router.put("/:id", auth, updateImage, updateThing)
 
 // delete
 router.delete("/:id", auth, deleteThing)
